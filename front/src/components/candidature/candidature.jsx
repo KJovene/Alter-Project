@@ -5,7 +5,11 @@ import axiosInstance from '../../axios';
 
 const Candidature = () => {
   const [formData, setformData] = useState('attente');
-
+  const [formEntreprise, setformEntreprise] = useState('');
+  const [formPoste, setformPoste] = useState('');
+  const [formlien, setformlien] = useState('');
+  const [formdate, setformdate] = useState('');
+  
   const handleChange = (event) => {
     setformData(event.target.formData);
   };
@@ -18,6 +22,22 @@ const Candidature = () => {
     const fetchCandidature = async () => {
       try {
         const response = await axiosInstance.get("/candidature")
+        console.log(response)
+      } catch(err){
+        console.log(err)
+      }
+    }
+    fetchCandidature()
+  },[])
+
+  useEffect(() => {
+    const postCandidature = async () => {
+      try {
+        const post = await axiosInstance.post("/candidature",
+          {
+            entreprise: "entreprise"
+          }
+        )
         console.log(response)
       } catch(err){
         console.log(err)
