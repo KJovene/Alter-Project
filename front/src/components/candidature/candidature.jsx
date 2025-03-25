@@ -13,7 +13,7 @@ const Candidature = () => {
   };
 
   return (
-    <div>
+    <div className="bodyCandidature">
       <form method="POST" onSubmit={handleSubmit}>
         <label>
           Entreprise :
