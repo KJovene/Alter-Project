@@ -1,18 +1,39 @@
-import joi, { date } from 'joi';
+import joi from 'joi';
 import mongoos from 'mongoose';
 
 const candidateSchema = new mongoos.Schema({
     entreprise: {
         type: String,
-        required: true
+        validate: {
+            validator: function(v) {
+                return joi.string()
+                .required()
+                .validate(v);
+            },
+        },
+        required: [true, 'Veuillez entrer le nom de l\'entreprise']
     },
     poste: {
         type: String,
-        required: true
+        validate: {
+            validator: function(v) {
+                return joi.string()
+                .required()
+                .validate(v);
+            },
+        },
+        required: [true, 'Veuillez entrer le poste souhaité']
     },
     lien:{
         type: String,
-        required: true
+        validate: {
+            validator: function(v) {
+                return joi.string()
+                .required()
+                .validate(v);
+            },
+        },
+        required: [true, 'Veuillez entrer le lien de l\'offre']
     },
     date: {
         type: Date,
@@ -20,36 +41,10 @@ const candidateSchema = new mongoos.Schema({
     },
     status: {
         type: String,
-        required: true
+        required: true,
     }
 });
 
 const Candidate = mongoos.model('Candidate', candidateSchema);
 
-const validateCandidate = (candidate) => {
-    const schema = joi.object({
-        entreprise: joi.string()
-        .required()
-        .messages({
-            'string.empty': `entreprise cannot be an empty field`}),
-        poste: joi.string()
-        .required()
-        .messages({
-            'string.empty': `poste cannot be an empty field`}
-        ),
-        lien: joi.string()
-        .required()
-        .messages({
-            'string.empty': `lien cannot be an empty field`}
-        ),
-        date: joi.date(),
-        status: joi.string()
-        .required()
-        .messages({
-            'string.empty': `status cannot be an empty field`}
-        )
-    });
-    return schema.validate(candidate);
-}
-
-export default { Candidate, validateCandidate };
+export default Candidate;
