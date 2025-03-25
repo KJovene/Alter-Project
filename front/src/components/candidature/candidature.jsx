@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { use, useState, useEffect } from "react";
 import './candidature.css';
 import axiosInstance from '../../axios';
+
 
 const Candidature = () => {
   const [formData, setformData] = useState('attente');
@@ -12,6 +13,18 @@ const Candidature = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    const fetchCandidature = async () => {
+      try {
+        const response = await axiosInstance.get("/candidature")
+        console.log(response)
+      } catch(err){
+        console.log(err)
+      }
+    }
+    fetchCandidature()
+  },[])
 
   return (
     <div className="bodyCandidature">
