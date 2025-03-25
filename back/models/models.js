@@ -1,7 +1,7 @@
 import joi from 'joi';
-import mongoos from 'mongoose';
+import mongoose from 'mongoose';
 
-const candidateSchema = new mongoos.Schema({
+const candidateSchema = new mongoose.Schema({
     entreprise: {
         type: String,
         validate: {
@@ -45,6 +45,6 @@ const candidateSchema = new mongoos.Schema({
     }
 });
 
-const Candidate = mongoos.model('Candidate', candidateSchema);
+const Candidate = mongoose.model('candidature', candidateSchema);
 
 export default Candidate;

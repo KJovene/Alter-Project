@@ -1,11 +1,12 @@
 import { useState } from "react";
 import './candidature.css';
+import axiosInstance from '../../axios';
 
 const Candidature = () => {
-  const [value, setValue] = useState('attente');
+  const [formData, setformData] = useState('attente');
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setformData(event.target.formData);
   };
 
   const handleSubmit = (event) => {
@@ -33,13 +34,13 @@ const Candidature = () => {
         </label>
         <label>
           Parfum favori :
-          <select value={value} onChange={handleChange}>
-            <option value="attente">En attente</option>
-            <option value="accepté">Accepté</option>
-            <option value="refusé">Refusé</option>
+          <select name={formData} onChange={handleChange}>
+            <option name="attente">En attente</option>
+            <option name="accepté">Accepté</option>
+            <option name="refusé">Refusé</option>
           </select>
         </label>
-        <input type="submit" value="Envoyer" />
+        <input type="submit" name="Envoyer" />
       </form>
     </div>
   );

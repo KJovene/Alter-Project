@@ -3,27 +3,20 @@ import express from "express";
 import cors from "cors";
 import dbConnect from "./db/dbconnect.js";
 import router from "./routes/router.js";
+import ENV from "./config/env.js";
 
 
 dotenv.config();
-dbConnect();
-
-const PORT = process.env.PORT || 4732;
+dbConnect(ENV.DB, ENV.DB_NAME);
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(router)
 
-
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 app.get("/", (req, res) => {
-  res.send("API is running....");
+  res.send("Hello world");
 });
 
-
+export default app;
 
