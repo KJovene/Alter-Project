@@ -1,16 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';    
 
-const dbConnect = async () => {
-    try {
-        const conn = await mongoose.connect(process.env.DB, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        })
-        console.log(`MongoDB Connected: ${conn.connection.host}`)
-    } catch (error) {
-        console.error(`Error: ${error.message}`)
-        process.exit(1)
-    }
-    }
+const dbConnect = (MongoURI, DB_NAME) => {
+    mongoose
+        .connect(MongoURI, { dbName: DB_NAME})
+        .then(() => console.log('Connected to database'))
+        .catch((err) => console.log(err))
+}
 
 export default dbConnect;
