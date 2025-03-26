@@ -9,7 +9,7 @@ const Candidature = () => {
   const [formPoste, setformPoste] = useState('');
   const [formLien, setformLien] = useState('');
   const [formDate, setformDate] = useState('');
-  const [formStatus, setformStatus] = useState('');
+  const [formStatus, setformStatus] = useState('attente');
   
   const handleChange = (event) => {
     setformStatus(event.target.value);
@@ -17,13 +17,13 @@ const Candidature = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await axiosInstance.post("/post", {
+    await axiosInstance.post("/post", {
       entreprise : formEntreprise,
       poste : formPoste,
       lien : formLien,
       date : formDate,
       status : formStatus
-    })
+    });
   };
   
   
@@ -55,9 +55,7 @@ const Candidature = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-        <Link to="/">
           <input type="submit" />
-        </Link>
       </form>
     </div>
   );
