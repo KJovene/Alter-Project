@@ -33,10 +33,10 @@ export const putCandidate = async (req, res) => {
 }
 
 export const deleteCandidate = async (req, res) => {
-  await Candidate.findByIdAndDelete(req.params.id);
+  const delItem = await Candidate.findByIdAndDelete(req.params.id);
   res.send('Candidate deleted').status(204);
   if (!delItem) {
-    return res.status(404).Json({ message: "Item non trouvé" })
+    return res.status(404).json({ message: "Item non trouvé" })
   }
 }
 
