@@ -17,7 +17,7 @@ const Candidature = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await axiosInstance.post("/candidature", {
+    const data = await axiosInstance.post("/post", {
       entreprise : formEntreprise,
       poste : formPoste,
       lien : formLien,

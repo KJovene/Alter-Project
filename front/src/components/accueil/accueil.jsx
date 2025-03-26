@@ -8,7 +8,7 @@ const Accueil = () => {
 
   const fetchCandidature = async () => {
     try {
-      const response = await axiosInstance.get("/liste");
+      const response = await axiosInstance.get("/get");
       setCandidatures(response.data.candidates);
     } catch (err) {
       console.log(err);

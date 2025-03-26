@@ -3,9 +3,9 @@ import { getAllCandidates, postCandidate, putCandidate, deleteCandidate } from '
 
 const router = express.Router();
 
-router.post('/candidature' , postCandidate);
-router.get('/liste', getAllCandidates);
-router.delete('/candidature/:id', deleteCandidate);
-router.put('/candidature/:id', putCandidate);
+router.post('/post' , postCandidate);
+router.get('/get', getAllCandidates);
+router.delete('/delete/:id', deleteCandidate);
+router.put('/put/:id', putCandidate);
 
 export default router;
