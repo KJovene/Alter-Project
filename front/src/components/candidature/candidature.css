@@ -14,3 +14,10 @@
     border: 2px solid #000;
     border-radius: 20px;
 }
+.label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
