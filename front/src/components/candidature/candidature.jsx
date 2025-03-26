@@ -1,4 +1,4 @@
-import { use, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import './candidature.css';
 import axiosInstance from '../../axios';
 import { Link } from "react-router-dom";
@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 const Candidature = () => {
   const [formData, setformData] = useState('attente');
-  const [formEntreprise, setformEntreprise] = useState('');
-  const [formPoste, setformPoste] = useState('');
-  const [formlien, setformlien] = useState('');
-  const [formdate, setformdate] = useState('');
+  // const [formEntreprise, setformEntreprise] = useState('');
+  // const [formPoste, setformPoste] = useState('');
+  // const [formLien, setformLien] = useState('');
+  // const [formDate, setformDate] = useState('');
   
   const handleChange = (event) => {
     setformData(event.target.formData);
@@ -22,7 +22,7 @@ const Candidature = () => {
   useEffect(() => {
     const fetchCandidature = async () => {
       try {
-        const response = await axiosInstance.get("/candidature")
+        const response = await axiosInstance.get("/liste")
         console.log(response)
       } catch(err){
         console.log(err)
@@ -44,7 +44,7 @@ const Candidature = () => {
   //       console.log(err)
   //     }
   //   }
-  //   fetchCandidature()
+  //   postCandidature()
   // },[])
 
   return (
