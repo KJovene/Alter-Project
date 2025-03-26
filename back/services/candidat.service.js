@@ -3,7 +3,7 @@ import Candidate  from '../models/models.js';
 export const getAllCandidates = async (req, res) => {
   try {
     const candidates = await Candidate.find();
-    res.send(candidates).status(200).json({ message: "La requête a été éfectuée avec succès"});
+    res.status(200).json({ message: "La requête a été éfectuée avec succès", candidates});
   } catch (error) {
     console.log(error)
     res.status(404).json({ message: "Ressource non trouvée"})
