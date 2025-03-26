@@ -5,3 +5,18 @@
   margin-top: 50px;
   flex-direction: column;
 }
+.candidatureList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+}
+.candidatureItem{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: solid 3px white;
+  gap: 10px;
+  padding: 10px;
+}

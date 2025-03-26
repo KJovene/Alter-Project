@@ -31,6 +31,11 @@ const Accueil = () => {
               <p>Poste : {candidature.poste}</p>
               <p>Lien : {candidature.lien}</p>
               <p>Date : {candidature.date}</p>
+              <p>Statut : {candidature.status}</p>
+              <div>
+                <button>Supprimer</button>
+                <button>Modifier</button>
+              </div>
             </div>
           ))
         ) : (
