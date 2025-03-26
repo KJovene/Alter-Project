@@ -5,7 +5,11 @@ import axiosInstance from '../../axios';
 
 const Candidature = () => {
   const [formData, setformData] = useState('attente');
-
+  const [formEntreprise, setformEntreprise] = useState('');
+  const [formPoste, setformPoste] = useState('');
+  const [formlien, setformlien] = useState('');
+  const [formdate, setformdate] = useState('');
+  
   const handleChange = (event) => {
     setformData(event.target.formData);
   };
@@ -26,27 +30,43 @@ const Candidature = () => {
     fetchCandidature()
   },[])
 
+  // useEffect(() => {
+  //   const postCandidature = async () => {
+  //     try {
+  //       const post = await axiosInstance.post("/candidature",
+  //         {
+  //           entreprise: "entreprise"
+  //         }
+  //       )
+  //       console.log(response)
+  //     } catch(err){
+  //       console.log(err)
+  //     }
+  //   }
+  //   fetchCandidature()
+  // },[])
+
   return (
     <div className="bodyCandidature">
       <form method="POST" onSubmit={handleSubmit}>
-        <label>
-          Entreprise :
-          <input type="text" name="entreprise" />
+        <label className="label">
+          Entreprise 
+          <input type="text" name="entreprise" placeholder="Microsoft"/>
         </label>
-        <label>
-          Poste :
-          <input type="text" name="poste" />
+        <label className="label">
+          Poste
+          <input type="text" name="poste" placeholder="CTO"/>
         </label>
-        <label>
-          Lien :
+        <label className="label">
+          Lien
           <input type="text" name="lien" />
         </label>
-        <label>
-          Date de l'inscription:
+        <label className="label">
+          Date de l'inscription
           <input type="date" name="date" />
         </label>
         <label>
-          Parfum favori :
+          Statut :
           <select name={formData} onChange={handleChange}>
             <option name="attente">En attente</option>
             <option name="accepté">Accepté</option>
