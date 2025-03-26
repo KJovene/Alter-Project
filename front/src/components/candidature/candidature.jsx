@@ -30,21 +30,21 @@ const Candidature = () => {
     fetchCandidature()
   },[])
 
-  useEffect(() => {
-    const postCandidature = async () => {
-      try {
-        const post = await axiosInstance.post("/candidature",
-          {
-            entreprise: "entreprise"
-          }
-        )
-        console.log(response)
-      } catch(err){
-        console.log(err)
-      }
-    }
-    fetchCandidature()
-  },[])
+  // useEffect(() => {
+  //   const postCandidature = async () => {
+  //     try {
+  //       const post = await axiosInstance.post("/candidature",
+  //         {
+  //           entreprise: "entreprise"
+  //         }
+  //       )
+  //       console.log(response)
+  //     } catch(err){
+  //       console.log(err)
+  //     }
+  //   }
+  //   fetchCandidature()
+  // },[])
 
   return (
     <div className="bodyCandidature">
