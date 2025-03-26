@@ -4,43 +4,41 @@ import axiosInstance from '../../axios';
 import './accueil.css';
 
 const Accueil = () => {
-  const [candidatures, setcandidatures] = useState([]);
+  const [candidatures, setCandidatures] = useState([]); 
+
+  const fetchCandidature = async () => {
+    try {
+      const response = await axiosInstance.get("/liste");
+      setCandidatures(response.data.candidates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    const fetchCandidature = async () => {
-      try {
-        const response = await axiosInstance.get("/candidature")
-        console.log(response)
-      } catch(err){
-        console.log(err)
-      }
-    }
-    fetchCandidature()
-  },[])
-
-  const listCandidature = () => {
-    return candidatures.map((candidature, index) => {
-      return (
-        <div key={index}>
-          <p>{candidature.entreprise}</p>
-          <p>{candidature.poste}</p>
-          <p>{candidature.lien}</p>
-          <p>{candidature.date}</p>
-        </div>
-      )
-    })
-  }
+    fetchCandidature();
+  }, []);
 
   return (
-
     <div className="bodyAccueil">
       <h1>Bienvenue sur vos candidatures</h1>
       <Link to="/candidature">Ajouter une candidature</Link>
-      <div className="listCandidature">
-        {listCandidature}
+      <div className="candidatureList">
+        {candidatures.length > 0 ? (
+          candidatures.map((candidature, index) => (
+            <div key={index} className="candidatureItem">
+              <p>Entreprise : {candidature.entreprise}</p>
+              <p>Poste : {candidature.poste}</p>
+              <p>Lien : {candidature.lien}</p>
+              <p>Date : {candidature.date}</p>
+            </div>
+          ))
+        ) : (
+          <p>Aucune candidature trouvée.</p>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Accueil;
