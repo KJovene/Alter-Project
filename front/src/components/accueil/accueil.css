@@ -1,13 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(66, 66, 66);
+  color: whitesmoke;
+}
 .bodyAccueil {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
   flex-direction: column;
+}
+.addCandidature {
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  padding: 10px;
+  border: solid 3px grey;
+  border-radius: 15px;
 }
 .candidatureList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -16,7 +32,13 @@
 .candidatureItem{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: solid 3px white;
+  border: solid 3px grey;
+  border-radius: 15px;
+  padding: 5px;
+}
+.candidatureItemButtons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   gap: 10px;
-  padding: 10px;
 }

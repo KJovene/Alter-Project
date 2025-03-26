@@ -22,7 +22,7 @@ const Accueil = () => {
   return (
     <div className="bodyAccueil">
       <h1>Bienvenue sur vos candidatures</h1>
-      <Link to="/candidature">Ajouter une candidature</Link>
+      <Link to="/candidature" className="addCandidature">Ajouter une candidature</Link>
       <div className="candidatureList">
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (
@@ -32,7 +32,7 @@ const Accueil = () => {
               <p>Lien : {candidature.lien}</p>
               <p>Date : {candidature.date}</p>
               <p>Statut : {candidature.status}</p>
-              <div>
+              <div className="candidatureItemButtons">
                 <button>Supprimer</button>
                 <button>Modifier</button>
               </div>
