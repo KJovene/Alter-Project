@@ -15,6 +15,7 @@ const Candidature = () => {
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     const data = await axiosInstance.post("/candidature", {
       entreprise : formEntreprise,
       poste : formPoste,
@@ -22,8 +23,6 @@ const Candidature = () => {
       date : formDate,
       status : formStatus
     })
-    .json(data)
-    event.preventDefault();
   };
   
   
@@ -50,9 +49,9 @@ const Candidature = () => {
         <label>
           Statut :
           <select name="status" onChange={handleChange} value={formStatus}>
-            <option defaultValue="attente" name="attente">En attente</option>
-            <option name="accepté">Accepté</option>
-            <option name="refusé">Refusé</option>
+            <option defaultValue="attente" value="attente">En attente</option>
+            <option value="accepté">Accepté</option>
+            <option value="refusé">Refusé</option>
           </select>
         </label>
         <input type="submit" />
