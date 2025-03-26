@@ -46,7 +46,7 @@ const Candidature = () => {
           <input type="date" name="date" />
         </label>
         <label>
-          Parfum favori :
+          Statut :
           <select name={formData} onChange={handleChange}>
             <option name="attente">En attente</option>
             <option name="accepté">Accepté</option>
