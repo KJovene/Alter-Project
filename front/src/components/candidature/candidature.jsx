@@ -17,7 +17,7 @@ const Candidature = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await axiosInstance.post("/post", {
+    await axiosInstance.post("/post", {
       entreprise : formEntreprise,
       poste : formPoste,
       lien : formLien,
@@ -30,6 +30,9 @@ const Candidature = () => {
 
   return (
     <div className="bodyCandidature">
+      <Link to="/">
+        <button>Retour</button>
+      </Link>
       <form method="POST" onSubmit={handleSubmit}>
         <label className="label">
           Entreprise 
@@ -55,10 +58,10 @@ const Candidature = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-        <Link to="/">
           <input type="submit" />
-        </Link>
       </form>
+      <div>
+      </div>
     </div>
   );
 }

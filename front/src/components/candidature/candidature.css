@@ -1,8 +1,9 @@
 .bodyCandidature {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 50px;
+
 }
 .bodyCandidature form {
     display: flex;
