@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './candidature.css';
 import axiosInstance from '../../axios';
+import { Link } from "react-router-dom";
 
 
 const Candidature = () => {
@@ -54,7 +55,9 @@ const Candidature = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-        <input type="submit" />
+        <Link to="/">
+          <input type="submit" />
+        </Link>
       </form>
     </div>
   );
