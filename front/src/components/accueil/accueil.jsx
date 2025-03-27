@@ -34,7 +34,7 @@ const Accueil = () => {
               <p>Statut : {candidature.status}</p>
               <div>
                 <button>Supprimer</button>
-                <button>Modifier</button>
+                <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
               </div>
             </div>
           ))
