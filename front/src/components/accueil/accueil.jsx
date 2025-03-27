@@ -5,6 +5,7 @@ import './accueil.css';
 
 const Accueil = () => {
   const [candidatures, setCandidatures] = useState([]); 
+  const [count, setCount] = useState(0);
 
   const fetchCandidature = async () => {
     try {
@@ -16,7 +17,6 @@ const Accueil = () => {
     }
   };
 
-
     const deleteCandi = async (id) => {
     try {
       await axiosInstance.delete(`/delete/${id}`)
@@ -24,17 +24,30 @@ const Accueil = () => {
     } catch (err) {
       console.error("Erreur lors de la suppression :", err);
     }
+    fetchCandidature();
   };
 
+    const fetchCount = async () => {
+    try {
+      const count = await axiosInstance.get("/compteur");
+      setCount(count.data.count);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
     fetchCandidature();
+    fetchCount();
   }, []);
 
   return (
     <div className="bodyAccueil">
       <h1>Bienvenue sur vos candidatures</h1>
       <Link to="/candidature">Ajouter une candidature</Link>
+      <div>
+        <p>Voici le nombre de candidature : {count}</p>
+      </div>
       <div className="candidatureList">
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (

@@ -1,4 +1,5 @@
 import Candidate  from '../models/models.js';
+import express from 'express';
 
 export const getAllCandidates = async (req, res) => {
   try {
@@ -39,3 +40,12 @@ export const deleteCandidate = async (req, res) => {
   }
 }
 
+export const Compteur =  async (req, res) => {
+  try {
+    const count = await Candidate.countDocuments();
+    res.status(200).json({ message: "La requête a été éfectuée avec succès", count});    
+  } catch (error) {
+    console.error("Erreur lors de la requête", error);
+    res.status(500).json({ message: "Erreur interne du serveur"})
+  }
+};
