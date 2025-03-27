@@ -49,3 +49,14 @@ export const Compteur =  async (req, res) => {
     res.status(500).json({ message: "Erreur interne du serveur"})
   }
 };
+
+export const countByStatus = async (req, res) => {
+  try {
+    const counts = await Candidate.aggregate([
+      {$group: {_id: "$status", total: { $sum: 1 }}}
+    ])
+    res.json(counts.length > 0 ? counts : [])
+  } catch (error) {
+    res.status(500).json({message: "Erreur serveur"})
+  }
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './candidature.css';
 import axiosInstance from '../../axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Candidature = () => {
@@ -10,7 +10,8 @@ const Candidature = () => {
   const [formLien, setformLien] = useState('');
   const [formDate, setformDate] = useState('');
   const [formStatus, setformStatus] = useState('attente');
-  
+  const navigate = useNavigate();
+
   const handleChange = (event) => {
     setformStatus(event.target.value);
   };
@@ -24,6 +25,7 @@ const Candidature = () => {
       date : formDate,
       status : formStatus
     });
+    navigate('/');
   };
   
   
