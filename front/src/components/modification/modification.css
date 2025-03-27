@@ -1,0 +1,23 @@
+.bodyCandidature {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 50px;
+}
+.bodyCandidature form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 20px;
+}
+.label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

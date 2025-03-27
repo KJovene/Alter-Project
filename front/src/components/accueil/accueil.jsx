@@ -46,8 +46,10 @@ const Accueil = () => {
               <p>Statut : {candidature.status}</p>
               <p>{candidature._id}</p>
               <div>
-                <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
-                <button>Modifier</button>
+
+                <button>Supprimer</button>
+                <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
+
               </div>
             </div>
           ))

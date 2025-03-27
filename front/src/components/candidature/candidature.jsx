@@ -56,6 +56,7 @@ const Candidature = () => {
           </select>
         </label>
           <input type="submit" />
+
       </form>
     </div>
   );

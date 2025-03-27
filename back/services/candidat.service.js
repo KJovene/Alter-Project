@@ -22,9 +22,8 @@ export const postCandidate = async (req, res) => {
 
 export const putCandidate = async (req, res) => {
   try {
-    const candidate = await Candidate.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
-    await candidate.save();
-    res.send(candidate).status(200).json({ message: "La requête a été éfectuée avec succès"});
+    const candidate = await Candidate.findByIdAndUpdate(req.params.id, req.body , { new: true });
+    res.status(200).json({ message: "La requête a été éfectuée avec succès"});
     
   } catch (error) {
     console.log(error)
