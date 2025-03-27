@@ -17,13 +17,13 @@ const Candidature = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await axiosInstance.post("/post", {
+    await axiosInstance.post("/post", {
       entreprise : formEntreprise,
       poste : formPoste,
       lien : formLien,
       date : formDate,
       status : formStatus
-    })
+    });
   };
   
   

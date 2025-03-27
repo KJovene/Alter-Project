@@ -10,10 +10,22 @@ const Accueil = () => {
     try {
       const response = await axiosInstance.get("/get");
       setCandidatures(response.data.candidates);
+      return response.data.candidates._id
     } catch (err) {
       console.log(err);
     }
   };
+
+
+    const deleteCandi = async (id) => {
+    try {
+      await axiosInstance.delete(`/delete/${id}`)
+      setCandidatures(candidatures.filter((candidature) => candidature._id !== id));
+    } catch (err) {
+      console.error("Erreur lors de la suppression :", err);
+    }
+  };
+
 
   useEffect(() => {
     fetchCandidature();
@@ -32,9 +44,12 @@ const Accueil = () => {
               <p>Lien : {candidature.lien}</p>
               <p>Date : {candidature.date}</p>
               <p>Statut : {candidature.status}</p>
+              <p>{candidature._id}</p>
               <div>
+
                 <button>Supprimer</button>
                 <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
+
               </div>
             </div>
           ))
