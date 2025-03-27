@@ -60,7 +60,7 @@ const Accueil = () => {
               <p>{candidature._id}</p>
               <div>
 
-                <button>Supprimer</button>
+                <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
                 <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
 
               </div>
