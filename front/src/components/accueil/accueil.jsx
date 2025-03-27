@@ -17,7 +17,7 @@ const Accueil = () => {
   };
 
 
-    const deleteCandi = async (id) => {
+  const deleteCandi = async (id) => {
     try {
       await axiosInstance.delete(`/delete/${id}`)
       setCandidatures(candidatures.filter((candidature) => candidature._id !== id));
@@ -47,7 +47,7 @@ const Accueil = () => {
               <p>{candidature._id}</p>
               <div>
 
-                <button>Supprimer</button>
+                <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
                 <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
 
               </div>
