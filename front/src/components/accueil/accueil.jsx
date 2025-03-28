@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axiosInstance from '../../axios';
 import './accueil.css';
 import { motion } from "framer-motion";
+import Bouton from "../Bouton/Bouton";
+import Bouton2 from "../Bouton2/Bouton2";
 
 
 const Accueil = () => {
@@ -113,74 +115,75 @@ const Accueil = () => {
   }, []);
 
   return (
-    <div className="bodyAccueil">
-      <motion.h1
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.3 }}
-      >Bienvenue sur vos candidatures</motion.h1>
-      <motion.div
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.3 }}>
-        <Link to="/candidature" className="addCandidate">Ajouter une candidature</Link>
-      </motion.div>
-        <motion.p
+    <div>
+      <video autoPlay loop muted playsInline className="video">
+        <source src="../../../img/857134-hd_1280_720_24fps.mp4" type="video/mp4" />
+      </video>
+      <div className="bodyAccueil">
+        <motion.h1
         initial={{ scale: 0, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
-        >Voici le nombre de candidature : {count}</motion.p>
-      <motion.div className="candidatureCount"
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.35 }}>
-        <p>Candidature en attente: {statusCounts['attente']}</p>
-        <p>Candidature accepté: {statusCounts['accepté']}</p>
-        <p>Candidature refusé: {statusCounts['refusé']}</p>
-      </motion.div>
-      <motion.div className="filter"
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.4 }}>
-        <form onSubmit={handleSubmit} className="filterForm">
-          <label htmlFor="entreprise">Entreprise :</label>
-          <input type="text" name="entreprise" onChange={e => setEntreprise(e.target.value)} value={entreprise} />
-          <label htmlFor="status">Status :</label>
-          <select name="status" value={status} onChange={e => setStatus(e.target.value)}>
-            <option value="">---</option>
-            <option value="attente">attente</option>
-            <option value="accepté">accepté</option>
-            <option value="refusé">refusé</option>
-            <option value="expiré">expiré</option>
-          </select>
-          <button type="submit" className="filterButton">Filtrer</button>
-        </form>       
-          <button onClick={() => fetchCandidature()} className="resetButton">Reset</button>
-      </motion.div>
-      <motion.div className="candidatureList"
-      initial={{ scale: 0, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.4 }}>
-        {candidatures.length > 0 ? (
-          candidatures.map((candidature, index) => (
-            <div key={index} className={`candidatureItem ${expiredCandidatures.includes(candidature._id) ? 'expired' : ''}`}>
-              <p>Entreprise : {candidature.entreprise}</p>
-              <p>Poste : {candidature.poste}</p>
-              <p>Lien : {candidature.lien}</p>
-              {newDate == updateDate ?(<p>Date : {newDate}</p>) : (<p>Date : {updateDate}</p>)}
-              <p>Statut : {candidature.status}</p>
-              <div className="candidatureItemButtons">
-
-                <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
-
-                <Link to={'/modification/:'+ candidature._id} id={candidature._id} className="modifyButton">Modifier</Link>
+        >Bienvenue sur vos candidatures</motion.h1>
+        <motion.div
+        initial={{ scale: 0, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.3 }}>
+          <Link to="/candidature" className="addCandidate"><Bouton text="Ajouter une candidature" /></Link>
+        </motion.div>
+          <motion.p className="candidatureCount"
+          initial={{ scale: 0, y: 20 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+          >Voici le nombre de candidature : {count}</motion.p>
+        <motion.div className="candidatureCount"
+        initial={{ scale: 0, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.35 }}>
+          <p>Candidature en attente: {statusCounts['attente']}</p>
+          <p>Candidature accepté: {statusCounts['accepté']}</p>
+          <p>Candidature refusé: {statusCounts['refusé']}</p>
+        </motion.div>
+        <motion.div className="filter"
+        initial={{ scale: 0, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.4 }}>
+          <form onSubmit={handleSubmit} className="filterForm">
+            <label htmlFor="entreprise">Entreprise :</label>
+            <input type="text" name="entreprise" onChange={e => setEntreprise(e.target.value)} value={entreprise} />
+            <label htmlFor="status">Status :</label>
+            <select name="status" value={status} onChange={e => setStatus(e.target.value)}>
+              <option value="">---</option>
+              <option value="attente">attente</option>
+              <option value="accepté">accepté</option>
+              <option value="refusé">refusé</option>
+            </select>
+            <button type="submit" className="filterButton">Filtrer</button>
+          </form>
+            <button onClick={() => fetchCandidature()} className="resetButton">Reset</button>
+        </motion.div>
+        <motion.div className="candidatureList"
+        initial={{ scale: 0, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4 }}>
+          {candidatures.length > 0 ? (
+            candidatures.map((candidature, index) => (
+              <div key={index} className={`candidatureItem ${expiredCandidatures.includes(candidature._id) ? 'expired' : ''}`}>
+                <p>Entreprise : {candidature.entreprise}</p>
+                <p>Poste : {candidature.poste}</p>
+                <p>Lien : {candidature.lien}</p>
+                {newDate == updateDate ?(<p>Date : {newDate}</p>) : (<p>Date : {updateDate}</p>)}
+                <p>Statut : {candidature.status}</p>
+                <div>
+                  <Bouton2 onClick={() => deleteCandi(candidature._id)} text="Supprimer"/>
+                  <Link to={'/modification/:'+ candidature._id} id={candidature._id}><Bouton2 text="Modifier" /></Link>
+                </div>
               </div>
-            </div>
-
-          ))) : (
-          <p>Aucune candidature trouvée</p>
-        )}
-      </motion.div>
+            ))) : (
+            <p>Aucune candidature trouvée</p>
+          )}
+        </motion.div>
+      </div>
     </div>
   );
 };
