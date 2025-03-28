@@ -10,23 +10,46 @@ const Accueil = () => {
   const [count, setCount] = useState(0);
   const [statusCounts, setStatusCounts] = useState({
     "attente": 0,
-    "accepté": 0,
-    "refusé": 0
-  });
+    "accepté":0,
+    "refusé":0
+  })
+  const [expiredCandidatures, setExpiredCandidatures] = useState([]);
   const [entreprise, setEntreprise] = useState('');
   const [status, setStatus] = useState('');
 
   const fetchCandidature = async () => {
     try {
       const response = await axiosInstance.get("/get");
-      setCandidatures(response.data.candidates);
-      return response.data.candidates._id
+      const candidates = response.data.candidates;
+
+      setCandidatures(candidates);
+
+      candidates.forEach((candidature) => {
+        const createdAt = new Date(candidature.createdAt); 
+        const now = new Date(); 
+        const timeRemaining = 86400 - (now - createdAt); 
+
+        const updateAt = new Date(candidature.updatedAt);
+        const timeRemainingUpdate = 86400 - (now - updateAt);
+
+        if (timeRemaining > 0) {
+          setTimeout(() => {
+            setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+          }, timeRemaining);
+        
+        } else if (timeRemainingUpdate > 0) {
+          setTimeout(() => {
+            setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+          }, timeRemainingUpdate);
+      
+        } else {
+          setExpiredCandidatures((prev) => [...prev, candidature._id]);
+        }
+      });
     } catch (err) {
       console.log(err);
     }
   };
-
-
 
   const deleteCandi = async (id) => {
     try {
@@ -126,7 +149,7 @@ const Accueil = () => {
       transition={{ duration: 0.4, delay: 0.4 }}>
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (
-            <div key={index} className="candidatureItem">
+            <div key={index} className={`candidatureItem ${expiredCandidatures.includes(candidature._id) ? 'expired' : ''}`}>
               <p>Entreprise : {candidature.entreprise}</p>
               <p>Poste : {candidature.poste}</p>
               <p>Lien : {candidature.lien}</p>
