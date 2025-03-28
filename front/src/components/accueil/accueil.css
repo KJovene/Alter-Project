@@ -1,13 +1,25 @@
+body {
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  background-image: url("../../../img/grassland-landscape-greening-environment-park-background.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .bodyAccueil {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 5px;
   flex-direction: column;
+}
+h1{
+  font-size: 40px;
 }
 .candidatureList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -16,7 +28,62 @@
 .candidatureItem{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: solid 3px white;
+  border: solid 3px black;
+  border-radius: 20px;
   gap: 10px;
   padding: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.candidatureItem:hover{
+  background-color: rgb(255, 255, 255);
+  scale: 1.05;
+  transition: all ease 0.5s;
+}
+.candidatureItemButtons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.candidatureItemButtons button{
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(33, 33, 124);
+  color: white;
+  height: 29px;
+}
+.candidatureItemButtons button:hover{
+  cursor: pointer;
+}
+.modifyButton{
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(33, 33, 124);
+  color: white;
+}
+.candidatureCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 20px;
+}
+.addCandidate {
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  border: solid 3px black;
+  border-radius: 20px;
+  padding: 10px;
+}
+.addCandidate:hover {
+  background-color: black;
+  color: white;
+  scale: 1.1;
+  transition: all ease 0.5s;
 }
