@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import axiosInstance from '../../axios';
 import './accueil.css';
 
+
 const Accueil = () => {
-  const [candidatures, setCandidatures] = useState([]); 
+  const [candidatures, setCandidatures] = useState([]);
   const [count, setCount] = useState(0);
   const [statusCounts, setStatusCounts] = useState({
     "attente": 0,
-    "accepté":0,
-    "refusé":0
-  })
+    "accepté": 0,
+    "refusé": 0
+  });
+  const [entreprise, setEntreprise] = useState('');
+  const [status, setStatus] = useState('');
 
   const fetchCandidature = async () => {
     try {
@@ -34,7 +37,7 @@ const Accueil = () => {
     fetchCandidature();
   };
 
-    const fetchCount = async () => {
+  const fetchCount = async () => {
     try {
       const count = await axiosInstance.get("/compteur");
       setCount(count.data.count);
@@ -50,13 +53,21 @@ const Accueil = () => {
 
   const fetchCandidatureByStatus = async () => {
     const data = await getCandidateCountByStatus();
-    const countsMap = { "attente":0,"accepté":0,"refusé":0};
+    const countsMap = { "attente": 0, "accepté": 0, "refusé": 0 };
     data.forEach((item) => {
-      if(countsMap.hasOwnProperty(item._id)){
+      if (countsMap.hasOwnProperty(item._id)) {
         countsMap[item._id] = item.total;
       }
     });
     setStatusCounts(countsMap)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (entreprise != '' || status != '') {
+      setCandidatures(candidatures.filter((candidature) => candidature.entreprise == entreprise || candidature.status == status))
+    }
+
   }
 
   useEffect(() => {
@@ -75,6 +86,23 @@ const Accueil = () => {
         <p>Candidature accepté: {statusCounts['accepté']}</p>
         <p>Candidature refusé: {statusCounts['refusé']}</p>
       </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="entreprise">Entreprise</label>
+          <input type="text" name="entreprise" onChange={e => setEntreprise(e.target.value)} value={entreprise} />
+          <label htmlFor="status">Status :</label>
+          <select name="status" value={status} onChange={e => setStatus(e.target.value)}>
+            <option value="">---</option>
+            <option value="attente">attente</option>
+            <option value="accepté">accepté</option>
+            <option value="refusé">refusé</option>
+          </select>
+          <button type="submit">Filtrer</button>
+        </form>
+        
+          <button onClick={() => fetchCandidature()}>Reset</button>
+        
+      </div>
       <div className="candidatureList">
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (
@@ -82,20 +110,21 @@ const Accueil = () => {
               <p>Entreprise : {candidature.entreprise}</p>
               <p>Poste : {candidature.poste}</p>
               <p>Lien : {candidature.lien}</p>
-              <p>Date : {candidature.date}</p>
+              {candidature.createdAt == candidature.updatedAt ?(<p>Date : {candidature.createdAt}</p>) : (<p>Date : {candidature.updatedAt}</p>)}
               <p>Statut : {candidature.status}</p>
               <div>
 
                 <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
-                <Link to={'/modification/:'+ candidature._id} id={candidature._id}>Modifier</Link>
+                <Link to={'/modification/:' + candidature._id} id={candidature._id}>Modifier</Link>
 
               </div>
             </div>
-          ))
-        ) : (
-          <p>Aucune candidature trouvée.</p>
+
+          ))) : (
+          <p>Aucune candidature trouvée</p>
         )}
       </div>
+
     </div>
   );
 };
