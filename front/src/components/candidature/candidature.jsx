@@ -29,6 +29,9 @@ const Candidature = () => {
 
   return (
     <div>
+      <video autoPlay loop muted playsInline className="video">
+        <source src="../../../img/5701989-sd_540_360_25fps.mp4" type="video/mp4" />
+      </video>
       <Link to="/">
           <motion.div className="containerButton"
           initial={{ scale: 0, y: 20 }}
