@@ -18,6 +18,8 @@ const Accueil = () => {
   const [expiredCandidatures, setExpiredCandidatures] = useState([]);
   const [entreprise, setEntreprise] = useState('');
   const [status, setStatus] = useState('');
+  const [newDate, setNewDate] = useState([]);
+  const [updateDate, setUpdateDate] = useState([]);
 
   const fetchCandidature = async () => {
     try {
@@ -34,18 +36,24 @@ const Accueil = () => {
         const updateAt = new Date(candidature.updatedAt);
         const timeRemainingUpdate = 86400 - (now - updateAt);
 
+        setNewDate(createdAt.toDateString())
+        setUpdateDate(updateAt.toDateString())
+
         if (timeRemaining > 0) {
           setTimeout(() => {
             setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+            candidature.expiration = true
           }, timeRemaining);
         
         } else if (timeRemainingUpdate > 0) {
           setTimeout(() => {
-            setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+            setExpiredCandidatures((prev) => [...prev, candidature._id]);
+            candidature.expiration = true
           }, timeRemainingUpdate);
       
         } else {
           setExpiredCandidatures((prev) => [...prev, candidature._id]);
+          candidature.expiration = true
         }
       });
     } catch (err) {
@@ -91,11 +99,15 @@ const Accueil = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (entreprise != '' || status != '') {
-      setCandidatures(candidatures.filter((candidature) => candidature.entreprise == entreprise || candidature.status == status))
+      if(status != 'expiré'){
+        setCandidatures(candidatures.filter((candidature) => candidature.entreprise == entreprise || candidature.status == status))
+      }else{
+        setCandidatures(candidatures.filter((candidature) => candidature.expiration === true))
+      }
     }
-
+    
   }
-
+  
   useEffect(() => {
     fetchCandidature();
     fetchCount();
@@ -160,7 +172,7 @@ const Accueil = () => {
                 <p>Entreprise : {candidature.entreprise}</p>
                 <p>Poste : {candidature.poste}</p>
                 <p>Lien : {candidature.lien}</p>
-                {candidature.createdAt == candidature.updatedAt ?(<p>Date : {candidature.createdAt}</p>) : (<p>Date : {candidature.updatedAt}</p>)}
+                {newDate == updateDate ?(<p>Date : {newDate}</p>) : (<p>Date : {updateDate}</p>)}
                 <p>Statut : {candidature.status}</p>
                 <div>
                   <Bouton2 onClick={() => deleteCandi(candidature._id)} text="Supprimer"/>

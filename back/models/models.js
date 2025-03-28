@@ -39,6 +39,10 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         enum: ['attente', 'accepté','refusé'],
         default: 'attente'
+    },
+    expiration:{
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true
