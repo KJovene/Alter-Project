@@ -133,9 +133,12 @@ const Accueil = () => {
         <p>Candidature accepté: {statusCounts['accepté']}</p>
         <p>Candidature refusé: {statusCounts['refusé']}</p>
       </motion.div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="entreprise">Entreprise</label>
+      <motion.div className="filter"
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.4 }}>
+        <form onSubmit={handleSubmit} className="filterForm">
+          <label htmlFor="entreprise">Entreprise :</label>
           <input type="text" name="entreprise" onChange={e => setEntreprise(e.target.value)} value={entreprise} />
           <label htmlFor="status">Status :</label>
           <select name="status" value={status} onChange={e => setStatus(e.target.value)}>
@@ -144,12 +147,10 @@ const Accueil = () => {
             <option value="accepté">accepté</option>
             <option value="refusé">refusé</option>
           </select>
-          <button type="submit">Filtrer</button>
-        </form>
-        
-          <button onClick={() => fetchCandidature()}>Reset</button>
-        
-      </div>
+          <button type="submit" className="filterButton">Filtrer</button>
+        </form>       
+          <button onClick={() => fetchCandidature()} className="resetButton">Reset</button>
+      </motion.div>
       <motion.div className="candidatureList"
       initial={{ scale: 0, y: 20 }}
       animate={{ scale: 1, y: 0 }}
