@@ -45,7 +45,7 @@ h1{
 .candidatureItem:hover{
   scale: 1.05;
   color: aliceblue;
-  transition: all ease 0.5s;
+  transition: all ease 2s;
   background-image: url("../../../img/pexels-krimovsky-18714259.jpg");
   background-size: cover;
   background-position: center;
