@@ -12,7 +12,6 @@ const Modification = () => {
   const [formEntreprise, setformEntreprise] = useState('');
   const [formPoste, setformPoste] = useState('');
   const [formLien, setformLien] = useState('');
-  const [formDate, setformDate] = useState('');
   const [formStatus, setformStatus] = useState('attente');
   
 
@@ -26,7 +25,6 @@ const Modification = () => {
           entreprise : formEntreprise,
           poste : formPoste,
           lien : formLien,
-          date : formDate,
           status : formStatus
       });
       navigate('/');

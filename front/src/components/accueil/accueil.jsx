@@ -105,6 +105,7 @@ const Accueil = () => {
               <p>Date : {candidature.date}</p>
               <p>Statut : {candidature.status}</p>
               <div className="candidatureItemButtons">
+
                 <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
                 <Link to={'/modification/:'+ candidature._id} id={candidature._id} className="modifyButton">Modifier</Link>
               </div>

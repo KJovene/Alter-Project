@@ -35,15 +35,15 @@ const candidateSchema = new mongoose.Schema({
         },
         required: [true, 'Veuillez entrer le lien de l\'offre']
     },
-    date: {
-        type: Date,
-        default: Date.now
-    },
     status: {
         type: String,
-        required: true,
+        enum: ['attente', 'accepté','refusé'],
+        default: 'attente'
     }
-});
+}, {
+    timestamps: true
+}
+);
 
 const Candidate = mongoose.model('candidature', candidateSchema);
 
