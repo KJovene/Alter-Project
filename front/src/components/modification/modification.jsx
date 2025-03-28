@@ -59,10 +59,6 @@ const Modification = () => {
           Lien
           <input type="text" name="lien" onChange = {e => setformLien(e.target.value)} value={formLien} />
         </label>
-        <label className="label">
-          Date de l'inscription
-          <input type="date" name="date" onChange = {e => setformDate(e.target.value)} value={formDate} />
-        </label>
         <label>
           Statut :
           <select name="status" onChange={handleChange} value={formStatus}>
