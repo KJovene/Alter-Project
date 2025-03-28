@@ -16,6 +16,8 @@ const Accueil = () => {
   const [expiredCandidatures, setExpiredCandidatures] = useState([]);
   const [entreprise, setEntreprise] = useState('');
   const [status, setStatus] = useState('');
+  const [newDate, setNewDate] = useState([]);
+  const [updateDate, setUpdateDate] = useState([]);
 
   const fetchCandidature = async () => {
     try {
@@ -31,6 +33,11 @@ const Accueil = () => {
 
         const updateAt = new Date(candidature.updatedAt);
         const timeRemainingUpdate = 86400 - (now - updateAt);
+
+        setNewDate(createdAt.toDateString())
+        setUpdateDate(updateAt.toDateString())
+
+        console.log(newDate, updateDate)
 
         if (timeRemaining > 0) {
           setTimeout(() => {
@@ -153,7 +160,7 @@ const Accueil = () => {
               <p>Entreprise : {candidature.entreprise}</p>
               <p>Poste : {candidature.poste}</p>
               <p>Lien : {candidature.lien}</p>
-              {candidature.createdAt == candidature.updatedAt ?(<p>Date : {candidature.createdAt}</p>) : (<p>Date : {candidature.updatedAt}</p>)}
+              {newDate == updateDate ?(<p>Date : {newDate}</p>) : (<p>Date : {updateDate}</p>)}
               <p>Statut : {candidature.status}</p>
               <div className="candidatureItemButtons">
 
