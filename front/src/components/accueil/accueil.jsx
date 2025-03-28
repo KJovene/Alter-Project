@@ -22,7 +22,9 @@ const Accueil = () => {
     }
   };
 
-    const deleteCandi = async (id) => {
+
+
+  const deleteCandi = async (id) => {
     try {
       await axiosInstance.delete(`/delete/${id}`)
       setCandidatures(candidatures.filter((candidature) => candidature._id !== id));
