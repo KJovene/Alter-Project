@@ -84,7 +84,6 @@ const Accueil = () => {
               <p>Lien : {candidature.lien}</p>
               <p>Date : {candidature.date}</p>
               <p>Statut : {candidature.status}</p>
-              <p>{candidature._id}</p>
               <div>
 
                 <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
