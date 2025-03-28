@@ -59,3 +59,7 @@
   color: #000;
   font-weight: bold;
 }
+
+.Bouton2:hover{
+  cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
+}

@@ -21,3 +21,7 @@
     align-items: center;
     gap: 10px;
 }
+
+.bouton:hover{
+    cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
+}

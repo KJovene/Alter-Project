@@ -70,7 +70,7 @@ const Modification = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-          <input type="submit" />
+          <button type="submit" className="bouton">Confirmer</button>
       </motion.form>
     </div>
   </div>

@@ -66,7 +66,7 @@ const Candidature = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-          <input type="submit" />
+          <button type="submit" className="bouton">Ajouter</button>
       </motion.form>
     </div>
   </div>

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--pointer--SweezyCursors.png")16 16, pointer;
 }
 .video {
   position: fixed;
@@ -49,6 +50,7 @@ h1{
   background-image: url("../../../img/pexels-krimovsky-18714259.jpg");
   background-size: cover;
   background-position: center;
+  cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
 }
 .candidatureCount {
   display: flex;
@@ -83,7 +85,7 @@ h1{
   color: white;
 }
 .filterButton:hover {
-  cursor: pointer;
+  cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
 }
 .resetButton {
   padding: 5px;
@@ -93,5 +95,5 @@ h1{
   color: white;
 }
 .resetButton:hover {
-  cursor: pointer;
+  cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
 }

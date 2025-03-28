@@ -45,7 +45,7 @@
     text-decoration: none;
 }
 .button:hover {
-    cursor: pointer;
+    cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
 }
 .containerButton {
     display: flex;
@@ -57,7 +57,7 @@
     width: fit-content;
 }
 .containerButton:hover {
-    cursor: pointer;
+    cursor: url("../../../img/Pop\ Cat\ Meme\ Animated--cursor--SweezyCursors.png")16 16, pointer;
 }
 .containerButton img {
     width: 30px;
