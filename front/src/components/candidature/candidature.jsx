@@ -2,6 +2,7 @@ import { useState } from "react";
 import './candidature.css';
 import axiosInstance from '../../axios';
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 
 const Candidature = () => {
@@ -25,18 +26,26 @@ const Candidature = () => {
     });
     navigate('/');
   };
-  
-  
 
   return (
+    <div>
+      <Link to="/">
+          <motion.div className="containerButton"
+          initial={{ scale: 0, y: 20 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ duration: 0.6 }}>
+            <img src="../../../img/XMLID_222_.svg" alt="svg retour" />
+            <button className="button">Retour</button>
+          </motion.div>
+        </Link>
     <div className="bodyCandidature">
-      <Link to='/'>
-        <button>Retour</button>
-      </Link>
-      <form method="POST" onSubmit={handleSubmit}>
+      <motion.form method="POST" onSubmit={handleSubmit}
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.6 }}>
         <label className="label">
-          Entreprise 
-          <input type="text" name="entreprise" required placeholder="Microsoft" onChange = {e => setformEntreprise(e.target.value)} value={formEntreprise} />
+          Entreprise
+          <input type="text" name="entreprise" placeholder="Microsoft" onChange = {e => setformEntreprise(e.target.value)} value={formEntreprise} />
         </label>
         <label className="label">
           Poste
@@ -54,10 +63,10 @@ const Candidature = () => {
             <option value="refusé">Refusé</option>
           </select>
         </label>
-          <button type="submit">Ajouter</button>
-
-      </form>
+          <input type="submit" />
+      </motion.form>
     </div>
+  </div>
   );
 }
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from '../../axios';
 import './accueil.css';
+import { motion } from "framer-motion";
 
 
 const Accueil = () => {
@@ -78,14 +79,30 @@ const Accueil = () => {
 
   return (
     <div className="bodyAccueil">
-      <h1>Bienvenue sur vos candidatures</h1>
-      <Link to="/candidature">Ajouter une candidature</Link>
-      <div>
-        <p>Voici le nombre de candidature : {count}</p>
+      <motion.h1
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.3 }}
+      >Bienvenue sur vos candidatures</motion.h1>
+      <motion.div
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.3 }}>
+        <Link to="/candidature" className="addCandidate">Ajouter une candidature</Link>
+      </motion.div>
+        <motion.p
+        initial={{ scale: 0, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.3 }}
+        >Voici le nombre de candidature : {count}</motion.p>
+      <motion.div className="candidatureCount"
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.35 }}>
         <p>Candidature en attente: {statusCounts['attente']}</p>
         <p>Candidature accepté: {statusCounts['accepté']}</p>
         <p>Candidature refusé: {statusCounts['refusé']}</p>
-      </div>
+      </motion.div>
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="entreprise">Entreprise</label>
@@ -103,7 +120,10 @@ const Accueil = () => {
           <button onClick={() => fetchCandidature()}>Reset</button>
         
       </div>
-      <div className="candidatureList">
+      <motion.div className="candidatureList"
+      initial={{ scale: 0, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.4 }}>
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (
             <div key={index} className="candidatureItem">
@@ -112,19 +132,18 @@ const Accueil = () => {
               <p>Lien : {candidature.lien}</p>
               {candidature.createdAt == candidature.updatedAt ?(<p>Date : {candidature.createdAt}</p>) : (<p>Date : {candidature.updatedAt}</p>)}
               <p>Statut : {candidature.status}</p>
-              <div>
+              <div className="candidatureItemButtons">
 
                 <button onClick={() => deleteCandi(candidature._id)}>Supprimer</button>
-                <Link to={'/modification/:' + candidature._id} id={candidature._id}>Modifier</Link>
 
+                <Link to={'/modification/:'+ candidature._id} id={candidature._id} className="modifyButton">Modifier</Link>
               </div>
             </div>
 
           ))) : (
           <p>Aucune candidature trouvée</p>
         )}
-      </div>
-
+      </motion.div>
     </div>
   );
 };

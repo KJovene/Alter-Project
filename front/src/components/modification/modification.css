@@ -1,18 +1,21 @@
 .bodyCandidature {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    justify-content: center;
     margin: 50px;
+    font-size: 22px;
 }
 .bodyCandidature form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-content: center;
     gap: 20px;
     padding: 20px;
     border: 2px solid #000;
     border-radius: 20px;
+    background-color: rgba(155, 174, 184, 0.8);
 }
 .label {
     display: flex;
@@ -20,4 +23,35 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+.button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(33, 33, 124);
+    color: white;
+    text-decoration: none;
+}
+.button:hover {
+    cursor: pointer;
+}
+.containerButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 40px;
+    background-color: rgb(33, 33, 124);
+    border-radius: 20px;
+    width: fit-content;
+}
+.containerButton:hover {
+    cursor: pointer;
+}
+.containerButton img {
+    width: 30px;
+    height: 20px;
+    rotate: 180deg;
 }
