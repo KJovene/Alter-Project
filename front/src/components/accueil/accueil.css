@@ -90,3 +90,36 @@ h1{
   scale: 1.1;
   transition: all ease 0.5s;
 }
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 20px;
+}
+.filter form {
+  display: flex;
+  gap: 10px;
+}
+.filterButton {
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(33, 33, 124);
+  color: white;
+}
+.filterButton:hover {
+  cursor: pointer;
+}
+.resetButton {
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(33, 33, 124);
+  color: white;
+}
+.resetButton:hover {
+  cursor: pointer;
+}
