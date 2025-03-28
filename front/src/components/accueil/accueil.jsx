@@ -37,20 +37,21 @@ const Accueil = () => {
         setNewDate(createdAt.toDateString())
         setUpdateDate(updateAt.toDateString())
 
-        console.log(newDate, updateDate)
-
         if (timeRemaining > 0) {
           setTimeout(() => {
             setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+            candidature.expiration = true
           }, timeRemaining);
         
         } else if (timeRemainingUpdate > 0) {
           setTimeout(() => {
-            setExpiredCandidatures((prev) => [...prev, candidature._id]); 
+            setExpiredCandidatures((prev) => [...prev, candidature._id]);
+            candidature.expiration = true
           }, timeRemainingUpdate);
       
         } else {
           setExpiredCandidatures((prev) => [...prev, candidature._id]);
+          candidature.expiration = true
         }
       });
     } catch (err) {
@@ -96,11 +97,15 @@ const Accueil = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (entreprise != '' || status != '') {
-      setCandidatures(candidatures.filter((candidature) => candidature.entreprise == entreprise || candidature.status == status))
+      if(status != 'expiré'){
+        setCandidatures(candidatures.filter((candidature) => candidature.entreprise == entreprise || candidature.status == status))
+      }else{
+        setCandidatures(candidatures.filter((candidature) => candidature.expiration === true))
+      }
     }
-
+    
   }
-
+  
   useEffect(() => {
     fetchCandidature();
     fetchCount();
@@ -146,6 +151,7 @@ const Accueil = () => {
             <option value="attente">attente</option>
             <option value="accepté">accepté</option>
             <option value="refusé">refusé</option>
+            <option value="expiré">expiré</option>
           </select>
           <button type="submit" className="filterButton">Filtrer</button>
         </form>       
