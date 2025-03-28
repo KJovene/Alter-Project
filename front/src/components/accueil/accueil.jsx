@@ -5,6 +5,12 @@ import './accueil.css';
 
 const Accueil = () => {
   const [candidatures, setCandidatures] = useState([]); 
+  const [count, setCount] = useState(0);
+  const [statusCounts, setStatusCounts] = useState({
+    "attente": 0,
+    "accepté":0,
+    "refusé":0
+  })
 
   const fetchCandidature = async () => {
     try {
@@ -17,6 +23,7 @@ const Accueil = () => {
   };
 
 
+
   const deleteCandi = async (id) => {
     try {
       await axiosInstance.delete(`/delete/${id}`)
@@ -24,17 +31,50 @@ const Accueil = () => {
     } catch (err) {
       console.error("Erreur lors de la suppression :", err);
     }
+    fetchCandidature();
   };
 
+    const fetchCount = async () => {
+    try {
+      const count = await axiosInstance.get("/compteur");
+      setCount(count.data.count);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const getCandidateCountByStatus = async () => {
+    const response = await axiosInstance.get('/get/status');
+    return response.data;
+  }
+
+  const fetchCandidatureByStatus = async () => {
+    const data = await getCandidateCountByStatus();
+    const countsMap = { "attente":0,"accepté":0,"refusé":0};
+    data.forEach((item) => {
+      if(countsMap.hasOwnProperty(item._id)){
+        countsMap[item._id] = item.total;
+      }
+    });
+    setStatusCounts(countsMap)
+  }
 
   useEffect(() => {
     fetchCandidature();
+    fetchCount();
+    fetchCandidatureByStatus();
   }, []);
 
   return (
     <div className="bodyAccueil">
       <h1>Bienvenue sur vos candidatures</h1>
       <Link to="/candidature">Ajouter une candidature</Link>
+      <div>
+        <p>Voici le nombre de candidature : {count}</p>
+        <p>Candidature en attente: {statusCounts['attente']}</p>
+        <p>Candidature accepté: {statusCounts['accepté']}</p>
+        <p>Candidature refusé: {statusCounts['refusé']}</p>
+      </div>
       <div className="candidatureList">
         {candidatures.length > 0 ? (
           candidatures.map((candidature, index) => (
